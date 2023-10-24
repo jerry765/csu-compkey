@@ -1,0 +1,3 @@
+- user_tag_query.10W.TRAIN: 训练集
+- word_out: 训练集提取后信息
+- word_result: 种子关键词查找信息
