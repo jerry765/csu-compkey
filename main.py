@@ -35,13 +35,24 @@ print("---种子关键词相关信息写入完成---")
 # 记录extract.py的结束时间
 extract_end_time = time.time()
 
+# 再使用多线程处理，传递种子关键字作为参数
+print("---开始多线程查找种子关键词相关信息---")
+extract_process = subprocess.Popen(["python", "extract_in_multithreading.py"] + seed_keywords)
+extract_process.wait()  # 等待extract.py完成
+print("---种子关键词相关信息多线程写入完成---")
+
+# 记录extract.py的结束时间
+extract_in_multithreading_end_time = time.time()
+
 # 计算各个进程的耗时
 transfer_duration = transfer_end_time - start_time
-extract_duration = extract_end_time - transfer_end_time
+extract_duration = extract_end_time - transfer_in_multithreading_end_time
 transfer_in_multithreading_duration = transfer_in_multithreading_end_time - transfer_end_time
+extract_in_multithreading_duration = extract_in_multithreading_end_time - extract_end_time
 
 # 输出耗时信息
 print(f"普通处理耗时: {transfer_duration:.2f} 秒")
 print(f"多线程处理耗时: {transfer_in_multithreading_duration:.2f} 秒")
 print(f"关键词查找耗时: {extract_duration:.2f} 秒")
+print(f"多线程关键词查找耗时: {extract_in_multithreading_duration:.2f} 秒")
 

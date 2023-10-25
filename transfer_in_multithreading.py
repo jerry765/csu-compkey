@@ -46,5 +46,3 @@ if __name__ == '__main__':
                     # 写入结果
                     for result in result_list:
                         out_file.write(result)
-
-    print("数据提取完成.")
