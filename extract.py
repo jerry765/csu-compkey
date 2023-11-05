@@ -30,9 +30,11 @@ else:
     for keyword, data in keyword_data.items():
         # 使用拼音作为文件名
         pinyin_name = ''.join(lazy_pinyin(keyword))
-        output_file = f"data/word_result_{pinyin_name}.txt"
+        output_file = f"word_output/word_result_{pinyin_name}.txt"
+        print(f"正在生成文件：{output_file}")
         with open(output_file, "w", encoding="utf-8") as f:
             for item in data:
                 # 将分词后的内容写入文件
                 f.write(" ".join(item) + "\n")
         print(f"数据与关键字 '{keyword}' 相关的数据已写入文件 {output_file}.")
+

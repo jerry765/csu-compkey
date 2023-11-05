@@ -25,12 +25,12 @@ keywords_pattern = re.compile("|".join(map(re.escape, seed_keywords)))
 # 并发处理每一行
 def process_lines(lines):
     for line in lines:
-        # 使用正则表达式查找匹配的关键词
-        matches = keywords_pattern.findall(line)
-        for keyword in matches:
-            # 使用jieba分词器对匹配的关键词进行分词
-            keyword_segments = jieba.lcut(keyword)
-            keyword_data[keyword].append(keyword_segments)
+        # 使用jieba分词器对匹配的行进行分词
+        keyword_segments = jieba.lcut(line.strip())
+        for keyword in seed_keywords:
+            if keyword in line:
+                keyword_data[keyword].append(keyword_segments)
+
 
 with open(input_file, "r", encoding="utf-8") as file:
     lines = file.readlines()
@@ -46,7 +46,7 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 # 根据关键词生成文件名（使用拼音）
 def write_keyword_data(keyword, data):
     pinyin_name = ''.join(lazy_pinyin(keyword))
-    output_file = f"data/word_result_{pinyin_name}.txt"
+    output_file = f"word_output/word_result_{pinyin_name}.txt"
     with open(output_file, "w", encoding="utf-8") as f:
         for keyword_segments in data:
             # 将分词后的关键词写入文件
