@@ -1,5 +1,6 @@
 import os
 import sys
+import jieba
 from pypinyin import lazy_pinyin
 
 # 检查输入文件是否存在
@@ -21,7 +22,9 @@ else:
     for line in raw_data:
         for keyword in seed_keywords:
             if keyword in line:
-                keyword_data[keyword].append(line.strip())
+                # 使用jieba分词器对匹配的行进行分词
+                segments = jieba.lcut(line.strip())
+                keyword_data[keyword].append(segments)
 
     # 根据关键词生成文件名（使用拼音）
     for keyword, data in keyword_data.items():
@@ -30,5 +33,6 @@ else:
         output_file = f"data/word_result_{pinyin_name}.txt"
         with open(output_file, "w", encoding="utf-8") as f:
             for item in data:
-                f.write(item + "\n")
+                # 将分词后的内容写入文件
+                f.write(" ".join(item) + "\n")
         print(f"数据与关键字 '{keyword}' 相关的数据已写入文件 {output_file}.")

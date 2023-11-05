@@ -1,3 +1,8 @@
 /data/*
 !/data/README.md
 .history/
+
+# 忽略intermediate_output文件夹中的所有内容
+/intermediate_output/*
+# 不忽略intermediate_output文件夹本身
+!/intermediate_output/
