@@ -1,8 +1,15 @@
 /data/*
 !/data/README.md
+!/data/stop_words.txt
 .history/
 
 # 忽略intermediate_output文件夹中的所有内容
 /intermediate_output/*
+/word_output/*
+/compete_output/*
+/tfidf_output/*
 # 不忽略intermediate_output文件夹本身
 !/intermediate_output/
+!/word_output/
+!/compete_output/
+!/tfidf_output/
