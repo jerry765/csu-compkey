@@ -1,4 +1,6 @@
 import os
+import sys
+
 from pypinyin import lazy_pinyin
 
 
@@ -44,7 +46,7 @@ if not os.path.exists(compete_output_dir):
     os.makedirs(compete_output_dir)
 
 # 关键词列表
-keywords = ['郭德纲', '女']
+keywords = sys.argv[1:]
 
 # 对于列表中的每个关键词读取TF-IDF权重并计算竞争性关键词
 for keyword in keywords:
