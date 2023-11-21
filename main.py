@@ -19,7 +19,7 @@ start_time = time.time()
 
 # 再使用多线程处理
 print("---开始多线程处理原始数据---")
-transfer_in_multithreading_process = subprocess.Popen(["python", "transfer.py"])
+transfer_in_multithreading_process = subprocess.Popen(["python", "transfer_in_multithreading.py"])
 transfer_in_multithreading_process.wait()  # 等待transfer_in_multithreading.py完成
 print("---多线程处理原始数据完成---")
 
